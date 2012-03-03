@@ -32,6 +32,11 @@ namespace LostPets {
     }
 
     public enum DogBreed {
+        CockerSpaniel,
+        Husky,
+        GreyHound,
+        Dalmation,
+        Corgi,
         GermanShepherd,
         LabradorRetrievers,
         GoldenRetrievers,

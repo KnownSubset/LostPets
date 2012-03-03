@@ -64,6 +64,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BreedPivotPage.xaml.cs">
+      <DependentUpon>BreedPivotPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pet.cs" />
     <Compile Include="PhotoCapture.xaml.cs">
       <DependentUpon>PhotoCapture.xaml</DependentUpon>
@@ -85,6 +88,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="BreedPivotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PhotoCapture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="appbar.feature.camera.rest.png" />
+    <Resource Include="appbar.check.rest.png" />
     <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

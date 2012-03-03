@@ -14,6 +14,16 @@ namespace LostPets.ViewModels
 {
     public class UploadViewModel : INotifyPropertyChanged
     {
+        public string Description { get; set; }
+        public string Location { get; set; }
+        public DateTime DateTime { get; set; }
+        private Uri imageUri = new Uri("pet_thumbnail.jpg", UriKind.Relative);
+        public Uri ImageUri {
+            get { return imageUri; }
+            set { imageUri = value;
+                NotifyPropertyChanged("ImageUri");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

@@ -11,18 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using LostPets.ViewModels;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace LostPets
 {
     public partial class UploadPage : PhoneApplicationPage
     {
-        public UploadPage()
-        {
+        private UploadViewModel uploadViewModel = new UploadViewModel();
+
+        public UploadPage() {
+            uploadViewModel.Description = "here is data";
             InitializeComponent();
             // Set the data context of the listbox control to the sample data
-            DataContext = App.ViewModel;
+            DataContext = uploadViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
 
@@ -35,11 +39,6 @@ namespace LostPets
             }
         }
 
-        public string Description { get; set; }
-        public string Location { get; set; }
-        public DateTime DateTime { get; set; }
-        public string ImageUri { get; set; }
-
         private void GotoGallery(object sender, RoutedEventArgs e)
         {
             PhotoChooserTask photoChooserTask = new PhotoChooserTask();
@@ -49,7 +48,7 @@ namespace LostPets
         }
 
         private void ReadMetadataFromImage(object sender, PhotoResult photoResult) {
-            var bytes = new List<byte>();
+            /*var bytes = new List<byte>();
             using (IsolatedStorageFile isStore = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 using (IsolatedStorageFileStream targetStream = isStore.OpenFile(photoResult.OriginalFileName, FileMode.Create, FileAccess.Write))
@@ -66,8 +65,12 @@ namespace LostPets
                     }
                     bytes.RemoveRange((int)targetStream.Length, (int)(bytes.Count - targetStream.Length));
                 }
-            }
-            ImageUri = photoResult.OriginalFileName;
+            }*/
+            uploadViewModel.ImageUri = new Uri(photoResult.OriginalFileName, UriKind.Absolute);
+        }
+
+        private void BreedTextBoxTouchEvent(object sender, GestureEventArgs e) {
+            NavigationService.Navigate(new Uri("/BreedPivotPage.xaml", UriKind.Relative));
         }
     }
 }

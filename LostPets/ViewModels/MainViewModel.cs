@@ -30,28 +30,6 @@ namespace LostPets
         public ObservableCollection<ItemViewModel> Items { get; private set; }
         public ObservableCollection<Pet> PetsNearYou { get; private set; }
 
-        private string _sampleProperty = "Sample Runtime Property Value";
-
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding
-        /// </summary>
-        /// <returns></returns>
-        public string SampleProperty
-        {
-            get
-            {
-                return _sampleProperty;
-            }
-            set
-            {
-                if (value != _sampleProperty)
-                {
-                    _sampleProperty = value;
-                    NotifyPropertyChanged("SampleProperty");
-                }
-            }
-        }
-
         public bool IsDataLoaded
         {
             get;

@@ -23,8 +23,9 @@ namespace LostPets
             InitializeComponent();
 
             // Set the data context of the listbox control to the sample data
-            DataContext = new UploadViewModel();
+            DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+            
         }
 
         // Load data for the ViewModel Items

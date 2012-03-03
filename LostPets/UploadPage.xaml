@@ -40,20 +40,20 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
-          <Image Grid.Row="0" Grid.Column="0" Source="pet_thumbnail.jpg" />
+                    <Image Grid.Row="0" Grid.Column="0" Height="150" Stretch="Fill" Width="150" MaxWidth="150" MaxHeight="150" Source="{Binding ImageUri}" />
           <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
             <Button Click="GotoGallery">
               <Image Source="appbar.feature.camera.rest.png" Height="50"></Image>
             </Button>
           </StackPanel>
           <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <TextBlock Text="description" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" />
-            <TextBox Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="12,-6,12,0" />
-            <TextBlock Text="found around" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" />
-            <TextBox Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="12,-6,12,0" />
+                        <TextBlock Text="description" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBox Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="0,-6,12,0" />
+            <TextBlock Text="found around" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBox Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" />
             <toolkit:DatePicker x:Name="datePicker" Header="found @" Value="2/3/2010" />
-            <TextBlock Text="breed" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" />
-            <TextBox Text="breed" TextWrapping="Wrap" />
+            <TextBlock Text="breed" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBox Text="unknown" TextWrapping="Wrap"  Tap="BreedTextBoxTouchEvent" />
           </StackPanel>
         </Grid>
 
@@ -64,8 +64,7 @@
   <!--Sample code showing usage of ApplicationBar-->
   <phone:PhoneApplicationPage.ApplicationBar>
     <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-      <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1" />
-      <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2" />
+      <shell:ApplicationBarIconButton IconUri="appbar.check.rest.png" Text="upload" />
       <shell:ApplicationBar.MenuItems>
         <shell:ApplicationBarMenuItem Text="MenuItem 1" />
         <shell:ApplicationBarMenuItem Text="MenuItem 2" />
