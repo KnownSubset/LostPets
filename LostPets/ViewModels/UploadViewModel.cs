@@ -19,13 +19,26 @@ namespace LostPets.ViewModels
         public string Location { get; set; }
         public DateTime DateTime { get; set; }
         private Uri imageUri = new Uri("pet_thumbnail.jpg", UriKind.Relative);
-
+        
+        public UploadViewModel()
+        {
+            breed = "";
+        }
+        
         public Uri ImageUri {
             get { return imageUri; }
             set { imageUri = value;
                 NotifyPropertyChanged("ImageUri");
             }
         }
+
+        public string Breed
+        {
+            get { return breed; }
+            set { breed = value;
+            NotifyPropertyChanged("Breed");}
+        }
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

@@ -71,6 +71,7 @@ namespace LostPets
 
         private void BreedTextBoxTouchEvent(object sender, GestureEventArgs e) {
             NavigationService.Navigate(new Uri("/BreedPivotPage.xaml", UriKind.Relative));
+            uploadViewModel.Breed = UploadViewModel.breed;
         }
     }
 }

@@ -53,7 +53,7 @@
             <TextBox Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" />
             <toolkit:DatePicker x:Name="datePicker" Header="found @" Value="2/3/2010" />
             <TextBlock Text="breed" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="unknown" TextWrapping="Wrap"  Tap="BreedTextBoxTouchEvent" />
+            <TextBox Text="{Binding Breed}" TextWrapping="Wrap"  Tap="BreedTextBoxTouchEvent" />
           </StackPanel>
         </Grid>
 
