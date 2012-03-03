@@ -13,9 +13,9 @@ using Microsoft.Phone.Controls;
 
 namespace LostPets
 {
-    public partial class GalleryPage : PhoneApplicationPage
+    public partial class UploadPage : PhoneApplicationPage
     {
-        public GalleryPage()
+        public UploadPage()
         {
             InitializeComponent();
         }
@@ -23,5 +23,14 @@ namespace LostPets
         public String Description { get; set; }
         public String Location { get; set; }
         public DateTime DateTime { get; set; }
+
+        private void GotoGallery(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void TakePhoto(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
