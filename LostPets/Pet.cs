@@ -25,6 +25,14 @@ namespace LostPets {
             DogOrCat = DogOrCat.Dog;
         }
     }
+    
+    public class Cat : Pet {
+        public CatBreed CatBreed { get; set; }
+
+        public Cat() {
+            DogOrCat = DogOrCat.Cat;
+        }
+    }
 
     public enum DogOrCat {
         Dog,

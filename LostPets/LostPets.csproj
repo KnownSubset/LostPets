@@ -67,6 +67,7 @@
     <Compile Include="BreedPivotPage.xaml.cs">
       <DependentUpon>BreedPivotPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BreedViewModel.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="PhotoCapture.xaml.cs">
       <DependentUpon>PhotoCapture.xaml</DependentUpon>
