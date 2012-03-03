@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LostPets", "LostPets\LostPets.csproj", "{BB6D7779-9EB5-4A5B-A142-E5C7FD33CDAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB6D7779-9EB5-4A5B-A142-E5C7FD33CDAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6D7779-9EB5-4A5B-A142-E5C7FD33CDAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6D7779-9EB5-4A5B-A142-E5C7FD33CDAD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BB6D7779-9EB5-4A5B-A142-E5C7FD33CDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6D7779-9EB5-4A5B-A142-E5C7FD33CDAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB6D7779-9EB5-4A5B-A142-E5C7FD33CDAD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
