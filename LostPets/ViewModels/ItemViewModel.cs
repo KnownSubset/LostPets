@@ -15,7 +15,9 @@ namespace LostPets
 {
     public class ItemViewModel : INotifyPropertyChanged
     {
-        private string _lineOne;
+        private string details;
+        private string lineOne;
+        private string goToUri;
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
@@ -24,56 +26,54 @@ namespace LostPets
         {
             get
             {
-                return _lineOne;
+                return lineOne;
             }
             set
             {
-                if (value != _lineOne)
+                if (value != lineOne)
                 {
-                    _lineOne = value;
+                    lineOne = value;
                     NotifyPropertyChanged("LineOne");
                 }
             }
         }
 
-        private string _lineTwo;
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
         /// <returns></returns>
-        public string LineTwo
+        public string Details
         {
             get
             {
-                return _lineTwo;
+                return details;
             }
             set
             {
-                if (value != _lineTwo)
+                if (value != details)
                 {
-                    _lineTwo = value;
-                    NotifyPropertyChanged("LineTwo");
+                    details = value;
+                    NotifyPropertyChanged("Details");
                 }
             }
         }
 
-        private string _lineThree;
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
         /// <returns></returns>
-        public string LineThree
+        public string GoToUri
         {
             get
             {
-                return _lineThree;
+                return goToUri;
             }
             set
             {
-                if (value != _lineThree)
+                if (value != goToUri)
                 {
-                    _lineThree = value;
-                    NotifyPropertyChanged("LineThree");
+                    goToUri = value;
+                    NotifyPropertyChanged("GoToUri");
                 }
             }
         }

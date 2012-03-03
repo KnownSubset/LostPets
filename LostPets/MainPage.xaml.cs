@@ -8,7 +8,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LostPets.ViewModels;
 using Microsoft.Phone.Controls;
 
 namespace LostPets
@@ -21,7 +23,7 @@ namespace LostPets
             InitializeComponent();
 
             // Set the data context of the listbox control to the sample data
-            DataContext = App.ViewModel;
+            DataContext = new UploadViewModel();
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
 
@@ -32,6 +34,12 @@ namespace LostPets
             {
                 App.ViewModel.LoadData();
             }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var itemViewModel = e.AddedItems[0] as ItemViewModel;
+            NavigationService.Navigate(new Uri(itemViewModel.GoToUri, UriKind.Relative));
         }
     }
 }

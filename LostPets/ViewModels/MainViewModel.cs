@@ -21,14 +21,17 @@ namespace LostPets
         public MainViewModel()
         {
             this.Items = new ObservableCollection<ItemViewModel>();
+            this.PetsNearYou = new ObservableCollection<Pet>();
         }
 
         /// <summary>
         /// A collection for ItemViewModel objects.
         /// </summary>
         public ObservableCollection<ItemViewModel> Items { get; private set; }
+        public ObservableCollection<Pet> PetsNearYou { get; private set; }
 
         private string _sampleProperty = "Sample Runtime Property Value";
+
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding
         /// </summary>
@@ -61,10 +64,12 @@ namespace LostPets
         public void LoadData()
         {
             // Sample data; replace with real data
-            this.Items.Add(new ItemViewModel() { LineOne = "find pets", LineTwo = "Maecenas praesent accumsan bibendum", LineThree = "Facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu" });
-            this.Items.Add(new ItemViewModel() { LineOne = "rescue", LineTwo = "Dictumst eleifend facilisi faucibus", LineThree = "Suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum dictumst eleifend facilisi faucibus" });
-            this.Items.Add(new ItemViewModel() { LineOne = "settings", LineTwo = "", LineThree = "Habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu suscipit torquent" });
+            //this.Items.Add(new ItemViewModel() { LineOne = "find pets", Details = "Maecenas praesent accumsan bibendum", LineThree = "Facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu" });
+            this.Items.Add(new ItemViewModel() { LineOne = "rescue stray", Details = "upload info on stray", GoToUri = "/UploadPage.xaml" });
+            this.Items.Add(new ItemViewModel() { LineOne = "report missing", Details = "upload info on your missing pet", GoToUri = "/UploadPage.xaml" });
+            this.Items.Add(new ItemViewModel() { LineOne = "settings", Details = "", GoToUri = "/Settings.xaml" });
 
+            this.PetsNearYou.Add(new Dog() { DogBreed = DogBreed.Beagles, PictureUri = "pet_thumbnail.jpg", FoundAround = "1234 Downing St" });
             this.IsDataLoaded = true;
         }
 

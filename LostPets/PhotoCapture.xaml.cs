@@ -33,7 +33,7 @@ namespace LostPets
         {
             camera = new PhotoCamera(CameraType.FrontFacing);
             // Event is fired when the PhotoCamera object has been initialized.
-            camera.Initialized += cam_Initialized;
+            /*camera.Initialized += cam_Initialized;
 
             // Event is fired when the capture sequence is complete and an image is available.
             camera.CaptureImageAvailable += cam_CaptureImageAvailable;
@@ -45,7 +45,7 @@ namespace LostPets
             // The event is fired when auto-focus is complete.
             camera.AutoFocusCompleted += cam_AutoFocusCompleted;
 
-            cameraInitialized = false;
+            cameraInitialized = false;*/
             viewFinderBrush.SetSource(camera);
         }
     }
