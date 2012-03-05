@@ -10,10 +10,10 @@
         <local:ItemViewModel LineOne="settings" Details="" LineThree="Accumsan bibendum dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat"/>
     </local:MainViewModel.Items>
     <local:MainViewModel.PetsNearYou>
-        <local:Dog PictureUri = "pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
-        <local:Dog PictureUri = "pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
-        <local:Dog PictureUri = "pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
-        <local:Dog PictureUri = "pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
+        <local:Dog PictureUri = "Images/pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
+        <local:Dog PictureUri = "Images/pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
+        <local:Dog PictureUri = "Images/pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
+        <local:Dog PictureUri = "Images/pet_thumbnail.jpg" FoundAround = "1234 Downing St" />
     </local:MainViewModel.PetsNearYou>
     
 </local:MainViewModel>

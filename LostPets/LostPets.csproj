@@ -67,6 +67,9 @@
     <Compile Include="BreedPivotPage.xaml.cs">
       <DependentUpon>BreedPivotPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SharePage.xaml.cs">
+      <DependentUpon>SharePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BreedViewModel.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="PhotoCapture.xaml.cs">
@@ -105,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
+    <Page Include="SharePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="uploadPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,18 +122,18 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="appbar.feature.camera.rest.png" />
-    <Resource Include="appbar.check.rest.png" />
-    <Content Include="ApplicationIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Background.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="PanoramaBackground.png" />
-    <Resource Include="pet_thumbnail.jpg" />
-    <Resource Include="icons.jpg" />
-    <Content Include="SplashScreenImage.jpg" />
+    <Resource Include="Images\appbar.check.rest.png" />
+    <Resource Include="Images\appbar.feature.camera.rest.png" />
+    <Resource Include="Images\ApplicationIcon.png" />
+    <Resource Include="Images\Background.png" />
+    <Resource Include="Images\facebook_icon.png" />
+    <Resource Include="Images\PanoramaBackground.png" />
+    <Resource Include="Images\twitter_icon.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\pet_thumbnail.jpg" />
+    <Resource Include="Images\SplashScreenImage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
