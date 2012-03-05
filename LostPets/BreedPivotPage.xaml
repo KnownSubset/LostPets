@@ -17,7 +17,8 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
       <!--Pivot Control-->
-      <controls:Pivot Title="MY APPLICATION">
+        <Line X1="22" X2="57.5" Y1="33" Y2="33" StrokeThickness="5" Stroke="#FFD30019"/>
+        <controls:Pivot Title="lost pets">
         <!--Pivot item one-->
         <controls:PivotItem Header="dog">
       

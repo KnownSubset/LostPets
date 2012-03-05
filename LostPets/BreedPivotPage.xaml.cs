@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -23,13 +24,17 @@ namespace LostPets
 
         private void DogSelected(object sender, SelectionChangedEventArgs eventArgs) {
             var addedItem = eventArgs.AddedItems[0] as Dog;
-            UploadViewModel.breed = addedItem.DogBreed.ToString();
+            var settings = IsolatedStorageSettings.ApplicationSettings;
+            settings.Remove("breed");
+            settings.Add("breed", addedItem.DogBreed.ToString());
             NavigationService.GoBack();
         }
 
         private void CatSelected(object sender, SelectionChangedEventArgs eventArgs) {
             var addedItem = eventArgs.AddedItems[0] as Cat;
-            UploadViewModel.breed = addedItem.CatBreed.ToString();
+            var settings = IsolatedStorageSettings.ApplicationSettings;
+            settings.Remove("breed");
+            settings.Add("breed", addedItem.CatBreed.ToString());
             NavigationService.GoBack();
         }
     }
