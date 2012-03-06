@@ -44,7 +44,7 @@ namespace LostPets
             // Sample data; replace with real data
             //this.Items.Add(new ItemViewModel() { LineOne = "find pets", Details = "Maecenas praesent accumsan bibendum", LineThree = "Facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu" });
             this.Items.Add(new ItemViewModel() { LineOne = "rescue stray", Details = "upload info on stray", GoToUri = "/UploadPage.xaml" });
-            this.Items.Add(new ItemViewModel() { LineOne = "report missing", Details = "upload info on your missing pet", GoToUri = "/UploadPage.xaml" });
+            this.Items.Add(new ItemViewModel() { LineOne = "report missing", Details = "upload info on your missing pet", GoToUri = "/MissingUploadPage.xaml" });
             this.Items.Add(new ItemViewModel() { LineOne = "settings", Details = "", GoToUri = "/Settings.xaml" });
 
             this.PetsNearYou.Add(new Dog() { DogBreed = DogBreed.Beagles, PictureUri = "pet_thumbnail.jpg", FoundAround = "1234 Downing St" });

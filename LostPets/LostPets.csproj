@@ -68,6 +68,9 @@
     <Compile Include="BreedPivotPage.xaml.cs">
       <DependentUpon>BreedPivotPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="missingUploadPage.xaml.cs">
+      <DependentUpon>missingUploadPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SharePage.xaml.cs">
       <DependentUpon>SharePage.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,7 @@
     </Compile>
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MissingPetUploadViewModel.cs" />
     <Compile Include="ViewModels\UploadViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +100,10 @@
     <Page Include="BreedPivotPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="missingUploadPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PhotoCapture.xaml">
       <SubType>Designer</SubType>
