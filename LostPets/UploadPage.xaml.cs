@@ -66,7 +66,16 @@ namespace LostPets
                     bytes.RemoveRange((int)targetStream.Length, (int)(bytes.Count - targetStream.Length));
                 }
             }*/
-            uploadViewModel.ImageUri = new Uri(photoResult.OriginalFileName, UriKind.Absolute);
+            var now = DateTime.Now;
+            var fileName = photoResult.OriginalFileName;
+            uploadViewModel.ImageUri = new Uri(fileName, UriKind.Absolute);
+            var fileStream = new FileStream(fileName, FileMode.Open);
+            var reader = new ExifReader(fileStream);
+            reader.info.FileSize = (int)fileStream.Length;
+            reader.info.LoadTime = DateTime.Now - now;
+            LocationService.
+            uploadViewModel.Location = reader.info.G
+            
         }
 
         private void BreedTextBoxTouchEvent(object sender, GestureEventArgs e) {
@@ -81,5 +90,10 @@ namespace LostPets
                 uploadViewModel.Breed = breed;
             }
         }
+
+    }
+
+    class ExifReader : ExifLib.ExifReader {
+        public ExifReader(Stream stream) : base(stream) {}
     }
 }

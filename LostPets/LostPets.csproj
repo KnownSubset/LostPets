@@ -48,6 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExifLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
@@ -130,7 +131,9 @@
     <Resource Include="Images\PanoramaBackground.png" />
     <Resource Include="Images\twitter_icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Binaries\ExifLib.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\pet_thumbnail.jpg" />
     <Resource Include="Images\SplashScreenImage.jpg" />
