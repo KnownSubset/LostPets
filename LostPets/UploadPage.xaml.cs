@@ -20,14 +20,17 @@ namespace LostPets
 {
     public partial class UploadPage : PhoneApplicationPage
     {
-        private UploadViewModel uploadViewModel = new UploadViewModel();
+        private readonly UploadViewModel uploadViewModel = new UploadViewModel();
+        private bool firstTimeEnteredLocation = true, firstTimeEnteredDescription = true;
 
         public UploadPage() {
-            uploadViewModel.Description = "here is data";
+            uploadViewModel.Description = "color/size/sex";
+            uploadViewModel.Location = "neighborhood or address";
+            uploadViewModel.DateTime = DateTime.Now;
             InitializeComponent();
             // Set the data context of the listbox control to the sample data
             DataContext = uploadViewModel;
-            this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+            this.Loaded += MainPage_Loaded;
         }
 
         // Load data for the ViewModel Items
@@ -73,8 +76,6 @@ namespace LostPets
             var reader = new ExifReader(fileStream);
             reader.info.FileSize = (int)fileStream.Length;
             reader.info.LoadTime = DateTime.Now - now;
-            LocationService.
-            uploadViewModel.Location = reader.info.G
             
         }
 
@@ -85,9 +86,25 @@ namespace LostPets
 
         void NavigationService_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e) {
             var isolatedStorageSettings = IsolatedStorageSettings.ApplicationSettings;
-            var breed = "";
+            string breed;
             if (isolatedStorageSettings.TryGetValue("breed", out breed)) {
                 uploadViewModel.Breed = breed;
+            }
+        }
+
+        private void EnteredDescriptionTextBox(object sender, GestureEventArgs e)
+        {
+            if (firstTimeEnteredDescription) {
+                firstTimeEnteredDescription = false;
+                uploadViewModel.Description = string.Empty;
+            }
+        }
+
+        private void EnteredLocationTextBox(object sender, GestureEventArgs e)
+        {
+            if (firstTimeEnteredLocation) {
+                firstTimeEnteredLocation = false;
+                uploadViewModel.Location = string.Empty;
             }
         }
 

@@ -24,7 +24,7 @@ namespace LostPets
 
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
-            this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+            this.Loaded += MainPage_Loaded;
             
         }
 
@@ -42,5 +42,11 @@ namespace LostPets
             var itemViewModel = e.AddedItems[0] as ItemViewModel;
             NavigationService.Navigate(new Uri(itemViewModel.GoToUri, UriKind.Relative));
         }
+
+        private void ShareClick(object sender, RoutedEventArgs routedEventArgs) {
+            NavigationService.Navigate(new Uri("/Share.xaml", UriKind.Relative));
+        }
+        private void HideClick(object sender, RoutedEventArgs routedEventArgs) {}
+        private void FlagClick(object sender, RoutedEventArgs routedEventArgs) {}
     }
 }

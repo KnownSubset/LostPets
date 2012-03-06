@@ -52,9 +52,9 @@
                             </StackPanel>
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu>
-                                    <toolkit:MenuItem Header="share" Tag="share" Click="MenuItem_Click" />
-                                    <toolkit:MenuItem Header="flag as innappropriate" Tag="flag" Click="MenuItem_Click" />
-                                    <toolkit:MenuItem Header="hide" Tag="hide" Click="MenuItem_Click" />
+                                    <toolkit:MenuItem Header="share" Tag="share" Click="ShareClick" />
+                                    <toolkit:MenuItem Header="flag as innappropriate" Tag="flag" Click="FlagClick" />
+                                    <toolkit:MenuItem Header="hide" Tag="hide" Click="HideClick" />
                                 </toolkit:ContextMenu>
                             </toolkit:ContextMenuService.ContextMenu>
                         </DataTemplate>

@@ -125,13 +125,13 @@
   <ItemGroup>
     <Resource Include="Images\appbar.check.rest.png" />
     <Resource Include="Images\appbar.feature.camera.rest.png" />
-    <Resource Include="Images\ApplicationIcon.png" />
-    <Resource Include="Images\Background.png" />
     <Resource Include="Images\facebook_icon.png" />
     <Resource Include="Images\PanoramaBackground.png" />
     <Resource Include="Images\twitter_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ApplicationIcon.png" />
+    <Resource Include="Background.png" />
     <Content Include="Binaries\ExifLib.dll" />
   </ItemGroup>
   <ItemGroup>

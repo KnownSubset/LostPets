@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{d8e65f83-4b53-4513-b4a8-b205665e6d66}" Title="LostPets" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="LostPets author" Description="Sample description" Publisher="LostPets">
+  <App xmlns="" ProductID="{d8e65f83-4b53-4513-b4a8-b205665e6d66}" Title="LostPets" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Nathan Dauber" Description="Sample description" Publisher="KnownSubset">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>
