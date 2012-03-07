@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Facebook;
 using Microsoft.Phone.Controls;
 using RestSharp;
+using TweetSharp;
 
 namespace LostPets {
     public partial class SharePage : PhoneApplicationPage {
@@ -11,14 +15,18 @@ namespace LostPets {
             InitializeComponent();
         }
 
-        private void Tweet(object sender, GestureEventArgs e) {
-            var restClient = new RestClient();
-            restClient.Authenticator = new OAuth2UriQueryParameterAuthenticator("");
-            var userId = "KnownSubset";
-            new RestRequest(string.Format("https://api.twitter.com/{0}/statuses/update_with_media.json", userId), Method.POST);
+        private void Tweet(object sender, System.Windows.Input.GestureEventArgs gestureEventArgs) {
+            var twitterService = new TwitterService("consumerKey", "consumerSecret");
+            twitterService.AuthenticateWith("accessToken", "accessTokenSecret");
+            twitterService.SendTweet("Tweeting with #tweetsharp for #wp7", (tweet, response) => {
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            });
         }
 
-        private void PostToWall(object sender, GestureEventArgs e) {
+        private void PostToWall(object sender, System.Windows.Input.GestureEventArgs gestureEventArgs) {
             var client = new FacebookClient("");
             var parameters = new Dictionary<string, object>();
             parameters.Add("message", "Olav is testing Facebook C# SDK");
@@ -31,6 +39,6 @@ namespace LostPets {
             client.PostAsync("me/feed", parameters);
         }
 
-        private void SubmitForKarma(object sender, GestureEventArgs e) {}
+        private void SubmitForKarma(object sender, System.Windows.Input.GestureEventArgs gestureEventArgs) {}
     }
 }

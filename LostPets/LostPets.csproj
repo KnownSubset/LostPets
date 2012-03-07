@@ -53,6 +53,7 @@
     <Reference Include="Hammock.WindowsPhone">
       <HintPath>Binaries\Hammock\Hammock.WindowsPhone.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib.WindowsPhone, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
@@ -70,6 +71,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="TweetSharp.WindowsPhone, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -150,6 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Binaries\Facebook.dll" />
+    <Content Include="Binaries\Hammock.WindowsPhone.dll" />
+    <Content Include="Binaries\ICSharpCode.SharpZipLib.WindowsPhone.dll" />
+    <Content Include="Binaries\Newtonsoft.Json.dll" />
+    <Content Include="Binaries\TweetSharp.WindowsPhone.dll" />
     <Resource Include="ApplicationIcon.png" />
     <Resource Include="Background.png" />
     <Content Include="Binaries\ExifLib.dll" />

@@ -9,7 +9,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -27,7 +27,14 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <toolkit:WrapPanel ItemHeight="165" ItemWidth="228"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="Pet uploaded to server.  Here is a link to the web page with the data, if you want to email or text it to get the word out. "/>
+            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="http:\\lostpets.com" TextAlignment="Center" Margin="0,15"/>
+            <toolkit:WrapPanel Grid.Row="2" ItemHeight="165" ItemWidth="228"  >
                 <Image Source="Images/twitter_icon.png" Tap="Tweet" Margin="0,5"/>
                 <Image Source="Images/facebook_icon.png" Tap="PostToWall" Margin="0,5"/>
                 <Image Source="Images/reddit_icon.png" Tap="SubmitForKarma" Margin="0,5"/>
@@ -35,12 +42,12 @@
         </Grid>
     </Grid>
 
-    <!--Sample code showing usage of ApplicationBar-->
+<!--    ~1~Sample code showing usage of ApplicationBar@1@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem x:Name="copyToClipBoard" Text="Copy Info To Clipboard"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
 </phone:PhoneApplicationPage>
