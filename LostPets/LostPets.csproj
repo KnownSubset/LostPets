@@ -49,11 +49,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExifLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Facebook, Version=5.4.1.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Hammock.WindowsPhone">
+      <HintPath>Binaries\Hammock\Hammock.WindowsPhone.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
-    <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Binaries\RestSharp\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.WindowsPhone">
+      <HintPath>Binaries\RestSharp\RestSharp.WindowsPhone.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -135,9 +145,11 @@
     <Resource Include="Images\appbar.feature.camera.rest.png" />
     <Resource Include="Images\facebook_icon.png" />
     <Resource Include="Images\PanoramaBackground.png" />
+    <Resource Include="Images\reddit_icon.png" />
     <Resource Include="Images\twitter_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Binaries\Facebook.dll" />
     <Resource Include="ApplicationIcon.png" />
     <Resource Include="Background.png" />
     <Content Include="Binaries\ExifLib.dll" />

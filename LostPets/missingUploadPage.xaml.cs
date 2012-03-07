@@ -73,13 +73,13 @@ namespace LostPets
                     bytes.RemoveRange((int)targetStream.Length, (int)(bytes.Count - targetStream.Length));
                 }
             }*/
-            var now = DateTime.Now;
             var fileName = photoResult.OriginalFileName;
             missingPetUploadViewModel.ImageUri = new Uri(fileName, UriKind.Absolute);
+            /*var now = DateTime.Now;
             var fileStream = new FileStream(fileName, FileMode.Open);
             var reader = new ExifReader(fileStream);
             reader.info.FileSize = (int)fileStream.Length;
-            reader.info.LoadTime = DateTime.Now - now;
+            reader.info.LoadTime = DateTime.Now - now;*/
             
         }
 
@@ -103,6 +103,11 @@ namespace LostPets
                 visited.Add(textBox.Name);
                 textBox.Text = "";
             }
+        }
+
+        private void UploadClick(object sender, EventArgs e)
+        {
+
         }
 
 

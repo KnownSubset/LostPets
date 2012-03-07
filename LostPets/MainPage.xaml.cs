@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LostPets.ViewModels;
 using Microsoft.Phone.Controls;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace LostPets
 {
@@ -37,15 +38,20 @@ namespace LostPets
             }
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
         {
-            var itemViewModel = e.AddedItems[0] as ItemViewModel;
-            NavigationService.Navigate(new Uri(itemViewModel.GoToUri, UriKind.Relative));
+            var listBox = sender as ListBox;
+            if (listBox.SelectedItem != null) {
+                var itemViewModel = listBox.SelectedItem as ItemViewModel;
+                NavigationService.Navigate(new Uri(itemViewModel.GoToUri, UriKind.Relative));
+                listBox.SelectedItem = null;
+            }
         }
 
         private void ShareClick(object sender, RoutedEventArgs routedEventArgs) {
             NavigationService.Navigate(new Uri("/Share.xaml", UriKind.Relative));
         }
+
         private void HideClick(object sender, RoutedEventArgs routedEventArgs) {}
         private void FlagClick(object sender, RoutedEventArgs routedEventArgs) {}
     }

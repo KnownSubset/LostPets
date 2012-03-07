@@ -40,7 +40,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" Height="150" Stretch="Fill" Width="150" MaxWidth="150" MaxHeight="150" Source="{Binding ImageUri}" />
+          <Image Grid.Row="0" Grid.Column="0" Stretch="Fill" Height="200" Width="200" Source="{Binding ImageUri}" />
           <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
             <Button Click="GotoGallery">
               <Image Source="Images\appbar.feature.camera.rest.png" Height="50"></Image>

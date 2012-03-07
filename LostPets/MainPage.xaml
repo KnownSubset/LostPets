@@ -22,7 +22,7 @@
         <controls:Pivot Title="lost pets" Name="pivot">
  
             <!--Panorama item one-->
-            <controls:PivotItem Header="actions">
+            <controls:PivotItem Header="take action">
                 <!--Double line list with text wrapping-->
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
@@ -62,7 +62,7 @@
                 </ListBox>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="find pets">
+            <controls:PivotItem Header="map it">
                 <Microsoft_Phone_Controls_Maps:Map />
             </controls:PivotItem>
             

@@ -1,4 +1,8 @@
-﻿<phone:PhoneApplicationPage x:Class="LostPets.MissingUploadPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Tasks="clr-namespace:Microsoft.Phone.Tasks;assembly=Microsoft.Phone" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneForegroundBrush}" SupportedOrientations="Portrait" Orientation="Portrait" mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480" shell:SystemTray.IsVisible="True">
+﻿<phone:PhoneApplicationPage
+  x:Class="LostPets.MissingUploadPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" FontFamily="{StaticResource PhoneFontFamilyNormal}"
+  FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneForegroundBrush}" SupportedOrientations="Portrait" Orientation="Portrait" mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480" shell:SystemTray.IsVisible="True">
 
 
   <ScrollViewer>
@@ -28,23 +32,23 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
-          <Image Grid.Row="0" Grid.Column="0" Height="150" Stretch="Fill" Width="150" MaxWidth="150" MaxHeight="150" Source="{Binding ImageUri}" />
+          <Image Grid.Row="0" Grid.Column="0" Stretch="Fill" Height="200" Width="200" Source="{Binding ImageUri}" />
           <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
             <Button Click="GotoGallery">
-              <Image Source="Images\appbar.feature.camera.rest.png" Height="50"></Image>
+              <Image Source="Images\appbar.feature.camera.rest.png" Height="50"/>
             </Button>
           </StackPanel>
           <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="name" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Path=Name}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBox x:Name="name" Text="{Binding Path=Name}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
             <TextBlock Text="contact" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Path=Contact}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
-            <TextBlock Text="contactMethod" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Path=ContactMethod}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBox x:Name="contact" Text="{Binding Path=Contact}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBlock Text="contact method" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBox x:Name="contactMethod" Text="{Binding Path=ContactMethod}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
             <TextBlock Text="description" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBox x:Name="description" Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
             <TextBlock Text="went missing around" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBox x:Name="location" Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
             <toolkit:DatePicker x:Name="datePicker" Header="last seen @" Value="{Binding DateTime}" />
             <TextBlock Text="breed" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
             <TextBox Text="{Binding Breed}" TextWrapping="Wrap" Tap="BreedTextBoxTouchEvent" />
@@ -58,11 +62,7 @@
   <!--Sample code showing usage of ApplicationBar-->
   <phone:PhoneApplicationPage.ApplicationBar>
     <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-      <shell:ApplicationBarIconButton IconUri="Images\appbar.check.rest.png" Text="upload" />
-      <shell:ApplicationBar.MenuItems>
-        <shell:ApplicationBarMenuItem Text="MenuItem 1" />
-        <shell:ApplicationBarMenuItem Text="MenuItem 2" />
-      </shell:ApplicationBar.MenuItems>
+      <shell:ApplicationBarIconButton Click="UploadClick" IconUri="Images\appbar.check.rest.png" Text="upload" />
     </shell:ApplicationBar>
   </phone:PhoneApplicationPage.ApplicationBar>
 
