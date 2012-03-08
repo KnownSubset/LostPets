@@ -22,19 +22,13 @@ namespace LostPets
             DataContext = new BreedViewModel();
         }
 
-        private void DogSelected(object sender, SelectionChangedEventArgs eventArgs) {
-            var addedItem = eventArgs.AddedItems[0] as Dog;
+        private void PetBreedSelected(object sender, SelectionChangedEventArgs eventArgs) {
+            if (eventArgs.AddedItems.Count == 0) return;
+            var addedItem = eventArgs.AddedItems[0] as LongListSelector.LongListSelectorItem;
+            var pet = addedItem.Item as Pet;
             var settings = IsolatedStorageSettings.ApplicationSettings;
             settings.Remove("breed");
-            settings.Add("breed", addedItem.DogBreed.ToString());
-            NavigationService.GoBack();
-        }
-
-        private void CatSelected(object sender, SelectionChangedEventArgs eventArgs) {
-            var addedItem = eventArgs.AddedItems[0] as Cat;
-            var settings = IsolatedStorageSettings.ApplicationSettings;
-            settings.Remove("breed");
-            settings.Add("breed", addedItem.CatBreed.ToString());
+            settings.Add("breed", pet.Breed);
             NavigationService.GoBack();
         }
     }

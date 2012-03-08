@@ -16,19 +16,16 @@ namespace LostPets {
         public Size Size { get; set; }
         public string PictureUri { get; set; }
         public string FoundAround { get; set; }
+        public string Breed { get; set; }
     }
 
     public class Dog : Pet {
-        public DogBreed DogBreed { get; set; }
-
         public Dog() {
             DogOrCat = DogOrCat.Dog;
         }
     }
     
     public class Cat : Pet {
-        public CatBreed CatBreed { get; set; }
-
         public Cat() {
             DogOrCat = DogOrCat.Cat;
         }
@@ -39,34 +36,6 @@ namespace LostPets {
         Cat
     }
 
-    public enum DogBreed {
-        CockerSpaniel,
-        Husky,
-        GreyHound,
-        Dalmation,
-        Corgi,
-        GermanShepherd,
-        LabradorRetrievers,
-        GoldenRetrievers,
-        Beagles,
-        Boxer,
-        Dachshund,
-        Bulldogs,
-        Poodles,
-    }
-    public enum CatBreed {
-        Abyssinian,
-        Burmese,
-        EgyptianMau,
-        Himalayan,
-        MaineCoon,
-        Manx,
-        Persian,
-        CornishRex,
-        DevonRex,
-        RussianBlue,
-        Siamese,
-    }
     public enum Size {
         Small,
         Medium,

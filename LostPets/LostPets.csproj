@@ -99,6 +99,7 @@
       <DependentUpon>uploadPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\Group.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MissingPetUploadViewModel.cs" />
@@ -129,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </DesignData>
+    <DesignData Include="SampleData\BreedViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
     <Page Include="SharePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +161,78 @@
     <Content Include="Binaries\ICSharpCode.SharpZipLib.WindowsPhone.dll" />
     <Content Include="Binaries\Newtonsoft.Json.dll" />
     <Content Include="Binaries\TweetSharp.WindowsPhone.dll" />
+    <Resource Include="Images\cats\cornish rex.png" />
+    <Resource Include="Images\dogs\chihuahua.png" />
+    <Resource Include="Images\dogs\long-haired chihuahua.png" />
+    <Resource Include="Images\dogs\english springer spaniel.png" />
+    <Resource Include="Images\cats\abyssinian.png" />
+    <Resource Include="Images\cats\burmese.png" />
+    <Resource Include="Images\cats\devon rex.png" />
+    <Resource Include="Images\cats\egyptian mau.png" />
+    <Resource Include="Images\cats\himalayan.png" />
+    <Resource Include="Images\cats\maine coon.png" />
+    <Resource Include="Images\cats\manx.png" />
+    <Resource Include="Images\cats\persian.png" />
+    <Resource Include="Images\cats\russian blue.png" />
+    <Resource Include="Images\cats\siamese.png" />
+    <Resource Include="Images\dogs\alaskan malamute.png" />
+    <Resource Include="Images\dogs\austrialian sheppard.png" />
+    <Resource Include="Images\dogs\basenji.png" />
+    <Resource Include="Images\dogs\basset hound.png" />
+    <Resource Include="Images\dogs\beagle.png" />
+    <Resource Include="Images\dogs\bichon.png" />
+    <Resource Include="Images\dogs\bloodhound.png" />
+    <Resource Include="Images\dogs\border collie.png" />
+    <Resource Include="Images\dogs\boston terrier.png" />
+    <Resource Include="Images\dogs\boxer.png" />
+    <Resource Include="Images\dogs\britteny.png" />
+    <Resource Include="Images\dogs\bull mastiff.png" />
+    <Resource Include="Images\dogs\bull terrier.png" />
+    <Resource Include="Images\dogs\bulldog.png" />
+    <Resource Include="Images\dogs\burmese mountain dog.png" />
+    <Resource Include="Images\dogs\cairn terrier.png" />
+    <Resource Include="Images\dogs\cavalier ac spaniel.png" />
+    <Resource Include="Images\dogs\chow chow.png" />
+    <Resource Include="Images\dogs\cocker spaniel.png" />
+    <Resource Include="Images\dogs\collie.png" />
+    <Resource Include="Images\dogs\daschund.png" />
+    <Resource Include="Images\dogs\dobermann pinscher.png" />
+    <Resource Include="Images\dogs\english sheep dog.png" />
+    <Resource Include="Images\dogs\fox terrier.png" />
+    <Resource Include="Images\dogs\french bulldog.png" />
+    <Resource Include="Images\dogs\german shepherd.png" />
+    <Resource Include="Images\dogs\german short hair pointer.png" />
+    <Resource Include="Images\dogs\golden retriever.png" />
+    <Resource Include="Images\dogs\great dane.png" />
+    <Resource Include="Images\dogs\great pyrenees mountain dog.png" />
+    <Resource Include="Images\dogs\greyhound.png" />
+    <Resource Include="Images\dogs\jack russel terrier.png" />
+    <Resource Include="Images\dogs\japanese chin.png" />
+    <Resource Include="Images\dogs\labrador retriever.png" />
+    <Resource Include="Images\dogs\lhasa apso.png" />
+    <Resource Include="Images\dogs\maltese terrier.png" />
+    <Resource Include="Images\dogs\mastiff.png" />
+    <Resource Include="Images\dogs\mini pinscher.png" />
+    <Resource Include="Images\dogs\papillion.png" />
+    <Resource Include="Images\dogs\pekingese.png" />
+    <Resource Include="Images\dogs\pointer.png" />
+    <Resource Include="Images\dogs\pomeranian.png" />
+    <Resource Include="Images\dogs\poodle.png" />
+    <Resource Include="Images\dogs\portugese water dog.png" />
+    <Resource Include="Images\dogs\pug.png" />
+    <Resource Include="Images\dogs\rottweilier.png" />
+    <Resource Include="Images\dogs\saint bernard.png" />
+    <Resource Include="Images\dogs\schnauzer.png" />
+    <Resource Include="Images\dogs\scottish terrier.png" />
+    <Resource Include="Images\dogs\shar-pei.png" />
+    <Resource Include="Images\dogs\sheltie.png" />
+    <Resource Include="Images\dogs\shih-tzu.png" />
+    <Resource Include="Images\dogs\siberian huskie.png" />
+    <Resource Include="Images\dogs\toy poodle.png" />
+    <Resource Include="Images\dogs\welsh corgi.png" />
+    <Resource Include="Images\dogs\west highland terrier.png" />
+    <Resource Include="Images\dogs\wheaten.png" />
+    <Resource Include="Images\dogs\yorkie.png" />
     <Resource Include="ApplicationIcon.png" />
     <Resource Include="Background.png" />
     <Content Include="Binaries\ExifLib.dll" />
@@ -164,6 +241,7 @@
     <Resource Include="Images\pet_thumbnail.jpg" />
     <Resource Include="Images\SplashScreenImage.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

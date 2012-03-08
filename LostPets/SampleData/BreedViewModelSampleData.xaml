@@ -1,0 +1,20 @@
+﻿<local:BreedViewModel
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:LostPets">
+
+  <local:BreedViewModel.DogBreeds>
+    <local:Dog Breed="dog 1" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+    <local:Dog Breed="dog two" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+    <local:Dog Breed="dog 1+1+1" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+    <local:Dog Breed="dog 2^2" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+  </local:BreedViewModel.DogBreeds>
+
+  <local:BreedViewModel.CatBreeds>
+    <local:Cat Breed="cat 1" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+    <local:Cat Breed="cat two" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+    <local:Cat Breed="cat 1+1+1" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+    <local:Cat Breed="cat 2*2" PictureUri="Images\pet_thumbnail.jpg" FoundAround="1234 Downing St" />
+  </local:BreedViewModel.CatBreeds>
+
+</local:BreedViewModel>

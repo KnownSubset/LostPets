@@ -1,14 +1,52 @@
-﻿<phone:PhoneApplicationPage x:Class="LostPets.BreedPivotPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneForegroundBrush}" SupportedOrientations="Portrait" Orientation="Portrait" shell:SystemTray.IsVisible="True">
+﻿<phone:PhoneApplicationPage
+  x:Class="LostPets.BreedPivotPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+  xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+  xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+  mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneForegroundBrush}"
+  d:DataContext="{d:DesignData SampleData/BreedViewModelSampleData.xaml}"
+  SupportedOrientations="Portrait" Orientation="Portrait"
+  shell:SystemTray.IsVisible="True">
 
   <!--LayoutRoot is the root grid where all page content is placed-->
   <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid.Resources>
+      <DataTemplate x:Key="groupHeaderTemplate">
+          <Border Background="{StaticResource PhoneAccentBrush}" Width="50" Height="50" Margin="6" HorizontalAlignment="Left">
+          <TextBlock Text="{Binding Title}" FontSize="40" Foreground="white" Margin="6,0"/>
+        </Border>
+      </DataTemplate>
+      <DataTemplate x:Key="groupItemTemplate">
+            <Border Background="{StaticResource PhoneAccentBrush}" Width="99" Height="99" Margin="6">
+            <TextBlock Text="{Binding Title}" FontSize="50" Foreground="white" Margin="10,0" VerticalAlignment="Bottom" />
+        </Border>
+      </DataTemplate>
+      <DataTemplate x:Key="listItemTemplate">
+        <StackPanel Orientation="Horizontal" Margin="6">
+          <Rectangle Width="175" Height="175" Fill="AliceBlue" />
+          <Image Source="{Binding PictureUri}" Height="175" Width="175" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-175,0,0,0"/>
+          <TextBlock Text="{Binding Breed}" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" VerticalAlignment="Center" />
+        </StackPanel>
+      </DataTemplate>
+    </Grid.Resources>
     <!--Pivot Control-->
     <Line X1="22" X2="58" Y1="33" Y2="33" StrokeThickness="5" Stroke="#FFD30019" />
     <controls:Pivot Title="lost pets">
       <!--Pivot item one-->
       <controls:PivotItem Header="dog">
-
-        <ListBox x:Name="dogs" ItemsSource="{Binding DogBreeds}" SelectionChanged="DogSelected">
+        <toolkit:LongListSelector ItemsSource="{Binding DogBreedsDictionary}"  SelectionChanged="PetBreedSelected" ItemTemplate="{StaticResource listItemTemplate}" GroupItemTemplate="{StaticResource groupItemTemplate}" GroupHeaderTemplate="{StaticResource groupHeaderTemplate}">
+          <toolkit:LongListSelector.GroupItemsPanel>
+            <ItemsPanelTemplate>
+              <toolkit:WrapPanel />
+            </ItemsPanelTemplate>
+          </toolkit:LongListSelector.GroupItemsPanel>
+        </toolkit:LongListSelector>
+        <!--<ListBox x:Name="dogs" ItemsSource="{Binding DogBreeds}" SelectionChanged="DogSelected">
           <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
               <toolkit:WrapPanel ItemHeight="200" ItemWidth="200" />
@@ -17,17 +55,26 @@
           <ListBox.ItemTemplate>
             <DataTemplate>
               <StackPanel>
-                <Image Source="{Binding PictureUri}" Height="175" Width="175" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock Text="{Binding DogBreed}" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,-35,10,0" />
-              </StackPanel>
+                <Rectangle Width="175" Height="175" Fill="AliceBlue" />
+                <Image Source="{Binding PictureUri}" Height="175" Width="175" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-175,0,0"/>
+                <TextBlock Text="{Binding Breed}" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,-35,10,0" />
+            </StackPanel>
             </DataTemplate>
           </ListBox.ItemTemplate>
-        </ListBox>
+        </ListBox>-->
       </controls:PivotItem>
 
       <!--Pivot item two-->
       <controls:PivotItem Header="cat">
-        <ListBox x:Name="cats" ItemsSource="{Binding CatBreeds}" SelectionChanged="CatSelected">
+
+        <toolkit:LongListSelector ItemsSource="{Binding CatBreedsDictionary}"  SelectionChanged="PetBreedSelected" ItemTemplate="{StaticResource listItemTemplate}" GroupItemTemplate="{StaticResource groupItemTemplate}" GroupHeaderTemplate="{StaticResource groupHeaderTemplate}">
+            <toolkit:LongListSelector.GroupItemsPanel>
+                <ItemsPanelTemplate>
+                    <toolkit:WrapPanel />
+                </ItemsPanelTemplate>
+            </toolkit:LongListSelector.GroupItemsPanel>
+        </toolkit:LongListSelector>
+                    <!--<ListBox x:Name="cats" ItemsSource="{Binding CatBreeds}" SelectionChanged="CatSelected">
           <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
               <toolkit:WrapPanel ItemHeight="200" ItemWidth="200" />
@@ -37,11 +84,11 @@
             <DataTemplate>
               <StackPanel>
                 <Image Source="{Binding PictureUri}" Height="175" Width="175" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock Text="{Binding CatBreed}" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,-35,10,0" />
+                <TextBlock Text="{Binding Breed}" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,-35,10,0" />
               </StackPanel>
             </DataTemplate>
           </ListBox.ItemTemplate>
-        </ListBox>
+        </ListBox>-->
       </controls:PivotItem>
     </controls:Pivot>
   </Grid>
