@@ -46,22 +46,6 @@
             </ItemsPanelTemplate>
           </toolkit:LongListSelector.GroupItemsPanel>
         </toolkit:LongListSelector>
-        <!--<ListBox x:Name="dogs" ItemsSource="{Binding DogBreeds}" SelectionChanged="DogSelected">
-          <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-              <toolkit:WrapPanel ItemHeight="200" ItemWidth="200" />
-            </ItemsPanelTemplate>
-          </ListBox.ItemsPanel>
-          <ListBox.ItemTemplate>
-            <DataTemplate>
-              <StackPanel>
-                <Rectangle Width="175" Height="175" Fill="AliceBlue" />
-                <Image Source="{Binding PictureUri}" Height="175" Width="175" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-175,0,0"/>
-                <TextBlock Text="{Binding Breed}" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,-35,10,0" />
-            </StackPanel>
-            </DataTemplate>
-          </ListBox.ItemTemplate>
-        </ListBox>-->
       </controls:PivotItem>
 
       <!--Pivot item two-->
@@ -74,34 +58,8 @@
                 </ItemsPanelTemplate>
             </toolkit:LongListSelector.GroupItemsPanel>
         </toolkit:LongListSelector>
-                    <!--<ListBox x:Name="cats" ItemsSource="{Binding CatBreeds}" SelectionChanged="CatSelected">
-          <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-              <toolkit:WrapPanel ItemHeight="200" ItemWidth="200" />
-            </ItemsPanelTemplate>
-          </ListBox.ItemsPanel>
-          <ListBox.ItemTemplate>
-            <DataTemplate>
-              <StackPanel>
-                <Image Source="{Binding PictureUri}" Height="175" Width="175" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock Text="{Binding Breed}" Style="{StaticResource PhoneTextNormalStyle}" TextAlignment="Right" TextWrapping="Wrap" Margin="0,-35,10,0" />
-              </StackPanel>
-            </DataTemplate>
-          </ListBox.ItemTemplate>
-        </ListBox>-->
       </controls:PivotItem>
     </controls:Pivot>
   </Grid>
-  <!--Sample code showing usage of ApplicationBar-->
-  <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
     
 </phone:PhoneApplicationPage>
