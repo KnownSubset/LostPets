@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Net;
+using System.Windows;
 using Facebook;
+using LostPets.ViewModels;
 using Microsoft.Phone.Controls;
 using TweetSharp;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
@@ -16,19 +18,14 @@ namespace LostPets {
         private void Tweet(object sender, GestureEventArgs gestureEventArgs) {
             var twitterService = new TwitterService("qbRYCoIh1o9wG6CMiXJHfg", "5afCN0rTenjkPbfpIEh6moE0ERRUpVLunoFja5S64Ks");
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            if (settings.Contains("twitterAccessToken") && settings.Contains("twitterAccessTokenSecret")) {
-                Action<OAuthAccessToken, TwitterResponse> accessTokenAction = (oAuthAccessToken, twitterResponse) => twitterService.AuthenticateWith(oAuthAccessToken.Token, oAuthAccessToken.TokenSecret);
-                Action<OAuthRequestToken, TwitterResponse> requestTokenAction = (oAuthRequestToken, response) => twitterService.GetAccessToken(oAuthRequestToken, accessTokenAction);
-                twitterService.GetRequestToken(requestTokenAction);
-
-                twitterService.ListTweetsOnHomeTimeline((tweets, response) => {
-                                                            if (response.StatusCode != HttpStatusCode.OK) {
-                                                                throw new Exception(response.StatusCode.ToString());
-                                                            }
-                                                        });
+            var twitterAccessToken = "twitterAccessToken";
+            var twitterAccessTokenSecret = "twitterAccessTokenSecret";
+            if (settings.Contains(twitterAccessToken) && settings.Contains(twitterAccessTokenSecret)) {
+                twitterService.AuthenticateWith(settings[twitterAccessToken] as string, settings[twitterAccessTokenSecret] as string);
                 twitterService.SendTweet("Tweeting with #tweetsharp for #wp7", (tweet, response) => {
                                                                                    if (response.StatusCode != HttpStatusCode.OK) {
-                                                                                       throw new Exception(response.StatusCode.ToString());
+                                                                                       settings.Remove(twitterAccessToken);
+                                                                                       settings.Remove(twitterAccessTokenSecret);
                                                                                    }
                                                                                });
             } else {
@@ -37,16 +34,25 @@ namespace LostPets {
         }
 
         private void PostToWall(object sender, GestureEventArgs gestureEventArgs) {
-            var client = new FacebookClient("");
-            var parameters = new Dictionary<string, object>();
-            parameters.Add("message", "Olav is testing Facebook C# SDK");
-            parameters.Add("link", "http://facebooksdk.codeplex.com/");
-            parameters.Add("picture", "http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=facebooksdk&DownloadId=170794&Build=17672");
-            parameters.Add("name", "Facebook C# SDK");
-            parameters.Add("caption", "http://facebooksdk.codeplex.com/");
-            parameters.Add("description", "The Facebook C# SDK helps .Net developers build web, desktop, Silverlight, and Windows Phone 7 applications that integrate with Facebook.");
-            parameters.Add("privacy", new Dictionary<string, object> {{"value", "ALL_FRIENDS"}});
-            client.PostAsync("me/feed", parameters);
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            if (settings.Contains("facebookAccessToken")) {
+                var client = new FacebookClient(settings["facebookAccessToken"] as string);
+                var parameters = new Dictionary<string, object>();
+                parameters.Add("message", "testing Facebook C# SDK");
+                parameters.Add("name", "Facebook C# SDK");
+                parameters.Add("description", "The Facebook C# SDK helps .Net developers build web, desktop, Silverlight, and Windows Phone 7 applications that integrate with Facebook.");
+                parameters.Add("privacy", new Dictionary<string, object> {{"value", "ALL_FRIENDS"}});
+                client.PostCompleted +=ClientOnPostCompleted;
+                client.PostAsync("me/feed", parameters);
+            }else {
+                NavigationService.Navigate(new Uri("/FacebookOAuthPage.xaml", UriKind.Relative));
+            }
+        }
+
+        private void ClientOnPostCompleted(object sender, FacebookApiEventArgs facebookApiEventArgs) {
+            if (facebookApiEventArgs.Error != null) {
+                Dispatcher.BeginInvoke(() => MessageBox.Show("error posting to facebook"));
+            }
         }
 
         private void SubmitForKarma(object sender, GestureEventArgs gestureEventArgs) {}

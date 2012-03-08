@@ -3,8 +3,8 @@ using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Navigation;
 using Hammock;
-using Hammock.Authentication.OAuth;
 using Microsoft.Phone.Controls;
+using TweetSharp;
 
 namespace LostPets {
     public partial class OAuthPage : PhoneApplicationPage {
@@ -12,7 +12,7 @@ namespace LostPets {
         public static readonly string ConsumerKeySecret = "5afCN0rTenjkPbfpIEh6moE0ERRUpVLunoFja5S64Ks";
         public static readonly string RequestTokenUri = "https://api.twitter.com/oauth/request_token";
         public static readonly string OAuthVersion = "1.0";
-        public static readonly string CallbackUri = "http://www.bing.com";
+        public static readonly string CallbackUri = "http://www.lostpets.com/AuthorizeCallback";
         public static readonly string AuthorizeUri = "https://api.twitter.com/oauth/authorize";
         public static readonly string AccessTokenUri = "https://api.twitter.com/oauth/access_token";
 
@@ -30,38 +30,22 @@ namespace LostPets {
         }
 
         private void GetTwitterToken() {
-            var credentials = new OAuthCredentials {
-                                                       Type = OAuthType.RequestToken,
-                                                       SignatureMethod = OAuthSignatureMethod.HmacSha1,
-                                                       ParameterHandling = OAuthParameterHandling.HttpAuthorizationHeader,
-                                                       ConsumerKey = ConsumerKey,
-                                                       ConsumerSecret = ConsumerKeySecret,
-                                                       Version = OAuthVersion,
-                                                       CallbackUrl = CallbackUri
-                                                   };
+            // Pass your credentials to the service
+            var service = new TwitterService(ConsumerKey, ConsumerKeySecret);
 
-            var client = new RestClient {
-                                            Authority = "https://api.twitter.com/oauth",
-                                            Credentials = credentials,
-                                            HasElevatedPermissions = true
-                                        };
+            // Step 1 - Retrieve an OAuth Request Token
+            Action<OAuthRequestToken, TwitterResponse> requestTokenAction = (oAuthRequestToken, response) => {
+                                                                                Uri uri = service.GetAuthorizationUri(oAuthRequestToken);
+                                                                                Dispatcher.BeginInvoke(() => BrowserControl.Navigate(uri));
+                                                                            };
+            service.GetRequestToken(requestTokenAction);
 
-            var request = new RestRequest {Path = "/request_token"};
-            client.BeginRequest(request, TwitterRequestTokenCompleted);
+
+            // Step 3 - Exchange the Request Token for an Access Token
+            //string verifier = "123456"; // <-- This is input into your application by your user
+            //OAuthAccessToken access = service.GetAccessToken(requestToken, verifier);
         }
 
-        private void TwitterRequestTokenCompleted(RestRequest request, RestResponse response, object userstate) {
-            _oAuthToken = GetQueryParameter(response.Content, "oauth_token");
-            _oAuthTokenSecret = GetQueryParameter(response.Content, "oauth_token_secret");
-            string authorizeUrl = AuthorizeUri + "?oauth_token=" + _oAuthToken;
-
-            if (String.IsNullOrEmpty(_oAuthToken) || String.IsNullOrEmpty(_oAuthTokenSecret)) {
-                Dispatcher.BeginInvoke(() => MessageBox.Show("error calling twitter"));
-                return;
-            }
-
-            Dispatcher.BeginInvoke(() => BrowserControl.Navigate(new Uri(authorizeUrl)));
-        }
 
         private static string GetQueryParameter(string input, string parameterName) {
             foreach (string item in input.Split('&')) {
@@ -102,59 +86,27 @@ namespace LostPets {
         }
 
         private void GetAccessToken(string uri) {
-            string requestToken = GetQueryParameter(uri, "oauth_token");
-            if (requestToken != _oAuthToken) {
-                MessageBox.Show("Twitter auth tokens don't match");
-            }
+            string oauth_verifier = GetQueryParameter(uri, "oauth_verifier");
+            string oauth_token = GetQueryParameter(uri, "oauth_token");
+            var requestToken = new OAuthRequestToken {Token = oauth_token};
 
-            string requestVerifier = GetQueryParameter(uri, "oauth_verifier");
-
-            var credentials = new OAuthCredentials {
-                                                       Type = OAuthType.AccessToken,
-                                                       SignatureMethod = OAuthSignatureMethod.HmacSha1,
-                                                       ParameterHandling = OAuthParameterHandling.HttpAuthorizationHeader,
-                                                       ConsumerKey = ConsumerKey,
-                                                       ConsumerSecret = ConsumerKeySecret,
-                                                       Token = _oAuthToken,
-                                                       TokenSecret = _oAuthTokenSecret,
-                                                       Verifier = requestVerifier
-                                                   };
-
-            var client = new RestClient {
-                                            Authority = "https://api.twitter.com/oauth",
-                                            Credentials = credentials,
-                                            HasElevatedPermissions = true
-                                        };
-
-            var request = new RestRequest {
-                                              Path = "/access_token"
+            // Step 3 - Exchange the Request Token for an Access Token
+            var service = new TwitterService(ConsumerKey, ConsumerKeySecret);
+            Action<TwitterUser, TwitterResponse> action;
+            Action<OAuthAccessToken, TwitterResponse> authenicateAction = (oAuthAccessToken, twitterResponse) => {
+                                 service.AuthenticateWith(oAuthAccessToken.Token, oAuthAccessToken.TokenSecret);
+                                 action = (twitterUser, response) => {
+                                              IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+                                              settings.Remove("twitterAccessToken");
+                                              settings.Remove("twitterAccessTokenSecret");
+                                              settings.Add("twitterAccessToken", oAuthAccessToken.Token);
+                                              settings.Add("twitterAccessTokenSecret", oAuthAccessToken.TokenSecret);
+                                              settings.Save();
+                                              NavigationService.GoBack();
                                           };
-
-            client.BeginRequest(request, RequestAccessTokenCompleted);
-        }
-
-        private void RequestAccessTokenCompleted(RestRequest request, RestResponse response, object userstate) {
-            string accessToken = GetQueryParameter(response.Content, "oauth_token");
-            string accessTokenSecret = GetQueryParameter(response.Content, "oauth_token_secret");
-            if (String.IsNullOrEmpty(accessToken) || String.IsNullOrEmpty(accessTokenSecret)) {
-                Dispatcher.BeginInvoke(() => MessageBox.Show(response.Content));
-                return;
-            }
-
-            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            settings.Remove("twitterAccessToken");
-            settings.Remove("twitterAccessTokenSecret");
-            settings.Add("twitterAccessToken", accessToken);
-            settings.Add("twitterAccessTokenSecret", accessTokenSecret);
-            settings.Save();
-
-            Dispatcher.BeginInvoke(() => {
-                                       if (NavigationService.CanGoBack) {
-                                           NavigationService.GoBack();
-                                       } else {
-                                           NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
-                                       }
-                                   });
+                                 service.VerifyCredentials(action);
+                             };
+            service.GetAccessToken(requestToken, oauth_verifier, authenicateAction);
         }
     }
 }

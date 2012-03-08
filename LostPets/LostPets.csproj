@@ -80,6 +80,9 @@
     <Compile Include="BreedPivotPage.xaml.cs">
       <DependentUpon>BreedPivotPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FacebookOAuthPage.xaml.cs">
+      <DependentUpon>FacebookOAuthPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="missingUploadPage.xaml.cs">
       <DependentUpon>missingUploadPage.xaml</DependentUpon>
     </Compile>
@@ -102,10 +105,13 @@
       <DependentUpon>uploadPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\FacebookOAuthSettings.cs" />
     <Compile Include="ViewModels\Group.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MissingPetUploadViewModel.cs" />
+    <Compile Include="ViewModels\OAuthApplicationSettings.cs" />
+    <Compile Include="ViewModels\TwitterOAuthSettings.cs" />
     <Compile Include="ViewModels\UploadViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +122,10 @@
     <Page Include="BreedPivotPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FacebookOAuthPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="missingUploadPage.xaml">
       <Generator>MSBuild:Compile</Generator>
