@@ -86,6 +86,9 @@
     <Compile Include="SharePage.xaml.cs">
       <DependentUpon>SharePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OAuthPage.xaml.cs">
+      <DependentUpon>OAuthPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BreedViewModel.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="PhotoCapture.xaml.cs">
@@ -137,6 +140,10 @@
     <Page Include="SharePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OAuthPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="uploadPage.xaml">
       <SubType>Designer</SubType>

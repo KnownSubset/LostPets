@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Threading;
 using Facebook;
 using Microsoft.Phone.Controls;
-using RestSharp;
 using TweetSharp;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace LostPets {
     public partial class SharePage : PhoneApplicationPage {
@@ -15,18 +13,30 @@ namespace LostPets {
             InitializeComponent();
         }
 
-        private void Tweet(object sender, System.Windows.Input.GestureEventArgs gestureEventArgs) {
-            var twitterService = new TwitterService("consumerKey", "consumerSecret");
-            twitterService.AuthenticateWith("accessToken", "accessTokenSecret");
-            twitterService.SendTweet("Tweeting with #tweetsharp for #wp7", (tweet, response) => {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    throw new Exception(response.StatusCode.ToString());
-                }
-            });
+        private void Tweet(object sender, GestureEventArgs gestureEventArgs) {
+            var twitterService = new TwitterService("qbRYCoIh1o9wG6CMiXJHfg", "5afCN0rTenjkPbfpIEh6moE0ERRUpVLunoFja5S64Ks");
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            if (settings.Contains("twitterAccessToken") && settings.Contains("twitterAccessTokenSecret")) {
+                Action<OAuthAccessToken, TwitterResponse> accessTokenAction = (oAuthAccessToken, twitterResponse) => twitterService.AuthenticateWith(oAuthAccessToken.Token, oAuthAccessToken.TokenSecret);
+                Action<OAuthRequestToken, TwitterResponse> requestTokenAction = (oAuthRequestToken, response) => twitterService.GetAccessToken(oAuthRequestToken, accessTokenAction);
+                twitterService.GetRequestToken(requestTokenAction);
+
+                twitterService.ListTweetsOnHomeTimeline((tweets, response) => {
+                                                            if (response.StatusCode != HttpStatusCode.OK) {
+                                                                throw new Exception(response.StatusCode.ToString());
+                                                            }
+                                                        });
+                twitterService.SendTweet("Tweeting with #tweetsharp for #wp7", (tweet, response) => {
+                                                                                   if (response.StatusCode != HttpStatusCode.OK) {
+                                                                                       throw new Exception(response.StatusCode.ToString());
+                                                                                   }
+                                                                               });
+            } else {
+                NavigationService.Navigate(new Uri("/OAuthPage.xaml", UriKind.Relative));
+            }
         }
 
-        private void PostToWall(object sender, System.Windows.Input.GestureEventArgs gestureEventArgs) {
+        private void PostToWall(object sender, GestureEventArgs gestureEventArgs) {
             var client = new FacebookClient("");
             var parameters = new Dictionary<string, object>();
             parameters.Add("message", "Olav is testing Facebook C# SDK");
@@ -39,6 +49,6 @@ namespace LostPets {
             client.PostAsync("me/feed", parameters);
         }
 
-        private void SubmitForKarma(object sender, System.Windows.Input.GestureEventArgs gestureEventArgs) {}
+        private void SubmitForKarma(object sender, GestureEventArgs gestureEventArgs) {}
     }
 }

@@ -112,13 +112,5 @@ namespace LostPets {
             }
         }
 
-        public Color ThemeColor {
-            get {
-                ResourceDictionary resourceDictionary = Application.Current.Resources;
-                var themeBrush = resourceDictionary["PhoneAccentBrush"] as SolidColorBrush;
-                Color themeColor = themeBrush.Color;
-                return themeColor;
-            }
-        }
     }
 }

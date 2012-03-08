@@ -34,5 +34,9 @@ namespace LostPets {
 
             return (that != null) && (Title.Equals(that.Title));
         }
+
+        public override int GetHashCode() {
+            return Title.GetHashCode();
+        }
     }
 }
