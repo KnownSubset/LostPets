@@ -28,7 +28,10 @@ namespace LostPets
             var pet = addedItem.Item as Pet;
             var settings = IsolatedStorageSettings.ApplicationSettings;
             settings.Remove("breed");
-            settings.Add("breed", pet.Breed);
+            settings["breed"] = pet.Breed;
+            settings.Remove("dogOrCat");
+            settings["dogOrCat"] = pet.DogOrCat.ToString();
+            settings.Save();
             NavigationService.GoBack();
         }
     }

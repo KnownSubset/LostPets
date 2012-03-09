@@ -65,12 +65,14 @@
     <Reference Include="RestSharp.WindowsPhone">
       <HintPath>Binaries\RestSharp\RestSharp.WindowsPhone.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="TweetSharp.WindowsPhone, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +85,11 @@
     <Compile Include="FacebookOAuthPage.xaml.cs">
       <DependentUpon>FacebookOAuthPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\IsolatedStorageService.cs" />
     <Compile Include="missingUploadPage.xaml.cs">
       <DependentUpon>missingUploadPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\PetUploader.cs" />
     <Compile Include="SharePage.xaml.cs">
       <DependentUpon>SharePage.xaml</DependentUpon>
     </Compile>
@@ -111,6 +115,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MissingPetUploadViewModel.cs" />
     <Compile Include="ViewModels\OAuthApplicationSettings.cs" />
+    <Compile Include="ViewModels\SocialShareViewModel.cs" />
     <Compile Include="ViewModels\TwitterOAuthSettings.cs" />
     <Compile Include="ViewModels\UploadViewModel.cs" />
   </ItemGroup>

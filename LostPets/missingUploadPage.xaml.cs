@@ -1,30 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Windows.Navigation;
+using LostPets.Services;
 using LostPets.ViewModels;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
-namespace LostPets
-{
-    public partial class MissingUploadPage : PhoneApplicationPage
-    {
+namespace LostPets {
+    public partial class MissingUploadPage : PhoneApplicationPage {
         private readonly MissingPetUploadViewModel missingPetUploadViewModel = new MissingPetUploadViewModel();
-        private IList<string> visited = new List<string>(); 
+        private readonly IList<string> visited = new List<string>();
+        private readonly IsolatedStorageSettings isolatedStorageSettings = IsolatedStorageSettings.ApplicationSettings;
 
-        public MissingUploadPage()
-        {
+        public MissingUploadPage() {
             missingPetUploadViewModel.Name = "pet's name";
             missingPetUploadViewModel.Contact = "owner's name";
             missingPetUploadViewModel.ContactMethod = "phone #/email address";
@@ -34,53 +26,30 @@ namespace LostPets
             InitializeComponent();
             // Set the data context of the listbox control to the sample data
             DataContext = missingPetUploadViewModel;
-            this.Loaded += MainPage_Loaded;
+            Loaded += MainPage_Loaded;
         }
 
         // Load data for the ViewModel Items
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (!App.ViewModel.IsDataLoaded)
-            {
+        private void MainPage_Loaded(object sender, RoutedEventArgs e) {
+            if (!App.ViewModel.IsDataLoaded) {
                 App.ViewModel.LoadData();
             }
         }
 
-        private void GotoGallery(object sender, RoutedEventArgs e)
-        {
-            PhotoChooserTask photoChooserTask = new PhotoChooserTask();
-            photoChooserTask.ShowCamera = true;
+        private void GotoGallery(object sender, RoutedEventArgs e) {
+            var photoChooserTask = new PhotoChooserTask {ShowCamera = true};
             photoChooserTask.Show();
             photoChooserTask.Completed += ReadMetadataFromImage;
         }
 
-        private void ReadMetadataFromImage(object sender, PhotoResult photoResult) {
-            /*var bytes = new List<byte>();
-            using (IsolatedStorageFile isStore = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                using (IsolatedStorageFileStream targetStream = isStore.OpenFile(photoResult.OriginalFileName, FileMode.Create, FileAccess.Write))
-                {
-                    // Initialize the buffer for 4KB disk pages.
-                    var readBuffer = new byte[4096];
-                    int bytesRead;
-
-                    // Copy the image to isolated storage. 
-                    while ((bytesRead = photoResult.ChosenPhoto.Read(readBuffer, 0, readBuffer.Length)) > 0)
-                    {
-                        targetStream.Write(readBuffer, 0, bytesRead);
-                        bytes.AddRange(readBuffer);
-                    }
-                    bytes.RemoveRange((int)targetStream.Length, (int)(bytes.Count - targetStream.Length));
-                }
-            }*/
-            var fileName = photoResult.OriginalFileName;
-            missingPetUploadViewModel.ImageUri = new Uri(fileName, UriKind.Absolute);
-            /*var now = DateTime.Now;
-            var fileStream = new FileStream(fileName, FileMode.Open);
-            var reader = new ExifReader(fileStream);
-            reader.info.FileSize = (int)fileStream.Length;
-            reader.info.LoadTime = DateTime.Now - now;*/
-            
+        private void ReadMetadataFromImage(object sender, PhotoResult photoResult)
+        {
+            //Setting the fileName
+            string fileName = "myWP7.dat";
+            new IsolatedStorageService().WriteOutToFile(fileName, photoResult.ChosenPhoto);
+            isolatedStorageSettings.Remove("image");
+            isolatedStorageSettings["image"] = photoResult.ChosenPhoto;
+            missingPetUploadViewModel.ImageUri = new Uri(photoResult.OriginalFileName);
         }
 
         private void BreedTextBoxTouchEvent(object sender, GestureEventArgs e) {
@@ -88,16 +57,17 @@ namespace LostPets
             NavigationService.Navigating += NavigationService_Navigating;
         }
 
-        void NavigationService_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e) {
-            var isolatedStorageSettings = IsolatedStorageSettings.ApplicationSettings;
-            string breed;
-            if (isolatedStorageSettings.TryGetValue("breed", out breed)) {
-                missingPetUploadViewModel.Breed = breed;
+        private void NavigationService_Navigating(object sender, NavigatingCancelEventArgs e) {
+            if (isolatedStorageSettings.Contains("breed")) {
+                missingPetUploadViewModel.Breed = isolatedStorageSettings["breed"] as string;
+                missingPetUploadViewModel.IsDogOrCat = (DogOrCat)Enum.Parse(typeof(DogOrCat), isolatedStorageSettings["dogOrCat"] as string, true);
+                isolatedStorageSettings.Remove("breed");
+                isolatedStorageSettings.Remove("dogOrCat");
+                isolatedStorageSettings.Save();
             }
         }
 
-        private void WipeOutTextOnFirstEntry(object sender, GestureEventArgs e)
-        {
+        private void WipeOutTextOnFirstEntry(object sender, GestureEventArgs e) {
             var textBox = sender as TextBox;
             if (!visited.Contains(textBox.Name)) {
                 visited.Add(textBox.Name);
@@ -105,12 +75,14 @@ namespace LostPets
             }
         }
 
-        private void UploadClick(object sender, EventArgs e)
-        {
-
+        private void UploadClick(object sender, EventArgs e) {
+            Pet pet = missingPetUploadViewModel.Pet();
+            isolatedStorageSettings.Remove("pet");
+            isolatedStorageSettings.Add("pet", pet);
+            var petUrl = new PetUploader().Upload(pet);
+            isolatedStorageSettings.Add("petUrl", petUrl);
+            isolatedStorageSettings.Save();
+            NavigationService.Navigate(new Uri("/SharePage.xaml", UriKind.Relative));
         }
-
-
     }
-
 }

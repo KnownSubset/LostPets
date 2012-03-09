@@ -47,6 +47,7 @@
             <TextBox x:Name="contactMethod" Text="{Binding Path=ContactMethod}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
             <TextBlock Text="description" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
             <TextBox x:Name="description" Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <toolkit:ListPicker ItemsSource="{Binding Statuses}" SelectedItem="{Binding Status}"/>
             <TextBlock Text="went missing around" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
             <TextBox x:Name="location" Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
             <toolkit:DatePicker x:Name="datePicker" Header="last seen @" Value="{Binding DateTime}" />

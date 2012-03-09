@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace LostPets.ViewModels {
     public class UploadViewModel : INotifyPropertyChanged {
+        private string breed = "unknown";
         private string description;
-
+        private Uri imageUri = new Uri("Images/pet_thumbnail.jpg", UriKind.Relative);
         private string location;
 
+        public IEnumerable<Size> Sizes {
+            get { return new Collection<Size> {Size.Small, Size.Medium, Size.Large}; }
+        }
+
+        public Size Size { get; set; }
         public DateTime DateTime { get; set; }
-        private Uri imageUri = new Uri("Images/pet_thumbnail.jpg", UriKind.Relative);
-        private string breed = "unknown";
+        public DogOrCat IsDogOrCat { get; set; }
 
         public string Description {
             get { return description; }
@@ -52,13 +50,30 @@ namespace LostPets.ViewModels {
             }
         }
 
+        #region INotifyPropertyChanged Members
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
 
         private void NotifyPropertyChanged(String propertyName) {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler) {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+
+        public Pet Pet() {
+            Pet pet = DogOrCat.Dog.Equals(IsDogOrCat) ? (Pet) new Dog() : new Cat();
+            pet.Breed = Breed;
+            pet.FoundAround = location;
+            pet.PictureUri = imageUri;
+            pet.Status = Status.Stray;
+            pet.DateWhen = DateTime;
+            pet.Description = description;
+            pet.Name = "";
+            return pet;
         }
     }
 }

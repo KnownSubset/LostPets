@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net;
 using System.Windows;
@@ -18,6 +20,7 @@ namespace LostPets.ViewModels {
         private string contactMethod;
         private string description;
         private string location;
+        private IEnumerable<Status> statuses = new Collection<Status>{Status.Lost, Status.AtShelter};
         private Uri imageUri = new Uri("Images/pet_thumbnail.jpg", UriKind.Relative);
         public DateTime DateTime { get; set; }
 
@@ -77,6 +80,14 @@ namespace LostPets.ViewModels {
             }
         }
 
+        public IEnumerable<Status> Statuses {
+            get { return statuses; }
+            set { statuses = value; }
+        }
+
+        private Status Status { get; set; }
+        public DogOrCat IsDogOrCat { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged(String propertyName) {
@@ -84,6 +95,20 @@ namespace LostPets.ViewModels {
             if (null != handler) {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public Pet Pet() {
+            Pet pet =  DogOrCat.Dog.Equals(IsDogOrCat) ? (Pet) new Dog() : new Cat();
+            pet.Breed = Breed;
+            pet.FoundAround = location;
+            pet.PictureUri = imageUri;
+            pet.Status = Status;
+            pet.DateWhen = DateTime;
+            pet.Description = description;
+            pet.Contact = contact;
+            pet.ContactMethod = contactMethod;
+            pet.Name = name;
+            return pet;
         }
     }
 }

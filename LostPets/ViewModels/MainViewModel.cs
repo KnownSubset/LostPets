@@ -48,7 +48,7 @@ namespace LostPets
             this.Items.Add(new ItemViewModel() { LineOne = "settings", Details = "", GoToUri = "/Settings.xaml" });
             this.Items.Add(new ItemViewModel() { LineOne = "share", Details = "", GoToUri = "/SharePage.xaml" });
 
-            this.PetsNearYou.Add(new Dog() { Breed = "Beagle", PictureUri = "pet_thumbnail.jpg", FoundAround = "1234 Downing St" });
+            this.PetsNearYou.Add(new Dog() { Breed = "Beagle", PictureUri = new Uri("Images/pet_thumbnail.jpg", UriKind.Relative), FoundAround = "1234 Downing St" });
             this.IsDataLoaded = true;
         }
 

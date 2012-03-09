@@ -1,17 +1,16 @@
-﻿<phone:PhoneApplicationPage 
-    x:Class="LostPets.UploadPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Tasks="clr-namespace:Microsoft.Phone.Tasks;assembly=Microsoft.Phone"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}" SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480" shell:SystemTray.IsVisible="True">
-
+﻿<phone:PhoneApplicationPage
+  x:Class="LostPets.UploadPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+  xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:Tasks="clr-namespace:Microsoft.Phone.Tasks;assembly=Microsoft.Phone"
+  xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+  FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}"
+  Foreground="{StaticResource PhoneForegroundBrush}" SupportedOrientations="Portrait" Orientation="Portrait"
+  mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480" shell:SystemTray.IsVisible="True">
 
   <ScrollViewer>
     <ScrollViewer.Content>
@@ -47,13 +46,15 @@
             </Button>
           </StackPanel>
           <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <TextBlock Text="description" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBlock Text="description" Style="{StaticResource PhoneTextSmallStyle}" />
             <TextBox Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="EnteredDescriptionTextBox" />
-            <TextBlock Text="found around" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBlock Text="size" Style="{StaticResource PhoneTextSmallStyle}" />
+            <toolkit:ListPicker ItemsSource="{Binding Sizes}" SelectedItem="{Binding Size}" />
+            <TextBlock Text="found around" Style="{StaticResource PhoneTextSmallStyle}" />
             <TextBox Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="EnteredLocationTextBox" />
             <toolkit:DatePicker x:Name="datePicker" Header="found @" Value="{Binding DateTime}" />
-            <TextBlock Text="breed" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Breed}" TextWrapping="Wrap"  Tap="BreedTextBoxTouchEvent" />
+            <TextBlock Text="breed" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBox Text="{Binding Breed}" TextWrapping="Wrap" Tap="BreedTextBoxTouchEvent" />
           </StackPanel>
         </Grid>
 
@@ -64,7 +65,7 @@
   <!--Sample code showing usage of ApplicationBar-->
   <phone:PhoneApplicationPage.ApplicationBar>
     <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-      <shell:ApplicationBarIconButton IconUri="Images\appbar.check.rest.png" Text="upload" />
+      <shell:ApplicationBarIconButton IconUri="Images\appbar.check.rest.png" Text="upload" Click="UploadClick" />
       <shell:ApplicationBar.MenuItems>
         <shell:ApplicationBarMenuItem Text="MenuItem 1" />
         <shell:ApplicationBarMenuItem Text="MenuItem 2" />
