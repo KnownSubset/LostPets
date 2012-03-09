@@ -4,10 +4,10 @@ using System.Windows.Media;
 
 namespace LostPets.ViewModels {
     public class SocialShareViewModel : INotifyPropertyChanged {
-        private Color fillColor = Color.FromArgb(255, 196, 196, 196);
+        private Brush fillColor = new SolidColorBrush(Colors.DarkGray);
         private string message;
 
-        public Color FillColor {
+        public Brush FillColor {
             get { return fillColor; }
             set {
                 fillColor = value;
@@ -17,7 +17,10 @@ namespace LostPets.ViewModels {
 
         public string Message {
             get { return message; }
-            set { message = value; }
+            set {
+                message = value;
+                NotifyPropertyChanged("Message");
+            }
         }
 
         #region INotifyPropertyChanged Members

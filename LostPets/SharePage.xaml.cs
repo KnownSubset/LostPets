@@ -86,11 +86,12 @@ namespace LostPets {
         private void SubmitForKarma(object sender, GestureEventArgs gestureEventArgs) {}
 
         private void TextBoxGotFocus(object sender, RoutedEventArgs e) {
-            socialShareViewModel.FillColor = Color.FromArgb(255, 196, 196, 196);
+            socialShareViewModel.FillColor = new SolidColorBrush(Colors.White);
         }
 
         private void TextBoxLostFocus(object sender, RoutedEventArgs e) {
-            socialShareViewModel.FillColor = Color.FromArgb(255, 255, 255, 255);
+            socialShareViewModel.FillColor = new SolidColorBrush(Colors.DarkGray);
         }
+
     }
 }

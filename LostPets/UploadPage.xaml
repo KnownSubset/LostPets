@@ -42,19 +42,19 @@
           <Image Grid.Row="0" Grid.Column="0" Stretch="Fill" Height="200" Width="200" Source="{Binding ImageUri}" />
           <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
             <Button Click="GotoGallery">
-              <Image Source="Images\appbar.feature.camera.rest.png" Height="50"></Image>
+              <Image Source="Images\appbar.feature.camera.rest.png" Height="50" />
             </Button>
           </StackPanel>
           <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="description" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="EnteredDescriptionTextBox" />
+            <TextBox Text="{Binding Description, Mode=TwoWay}" TextWrapping="Wrap" Tap="EnteredDescriptionTextBox" />
             <TextBlock Text="size" Style="{StaticResource PhoneTextSmallStyle}" />
-            <toolkit:ListPicker ItemsSource="{Binding Sizes}" SelectedItem="{Binding Size}" />
+            <toolkit:ListPicker ItemsSource="{Binding Sizes}" SelectedItem="{Binding Size, Mode=TwoWay}" Margin="10,0,10,10" />
             <TextBlock Text="found around" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="EnteredLocationTextBox" />
-            <toolkit:DatePicker x:Name="datePicker" Header="found @" Value="{Binding DateTime}" />
+            <TextBox Text="{Binding Location, Mode=TwoWay}" TextWrapping="Wrap" Tap="EnteredLocationTextBox" />
+                        <toolkit:DatePicker x:Name="datePicker" Header="found @" Value="{Binding DateTime, Mode=TwoWay}" />
             <TextBlock Text="breed" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Breed}" TextWrapping="Wrap" Tap="BreedTextBoxTouchEvent" />
+            <TextBox Text="{Binding Breed, Mode=TwoWay}" TextWrapping="Wrap" Tap="BreedTextBoxTouchEvent" />
           </StackPanel>
         </Grid>
 

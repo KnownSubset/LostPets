@@ -4,7 +4,6 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" FontFamily="{StaticResource PhoneFontFamilyNormal}"
   FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneForegroundBrush}" SupportedOrientations="Portrait" Orientation="Portrait" mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480" shell:SystemTray.IsVisible="True">
 
-
   <ScrollViewer>
     <ScrollViewer.Content>
       <!--LayoutRoot is the root grid where all page content is placed-->
@@ -35,24 +34,26 @@
           <Image Grid.Row="0" Grid.Column="0" Stretch="Fill" Height="200" Width="200" Source="{Binding ImageUri}" />
           <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
             <Button Click="GotoGallery">
-              <Image Source="Images\appbar.feature.camera.rest.png" Height="50"/>
+              <Image Source="Images\appbar.feature.camera.rest.png" Height="50" />
             </Button>
           </StackPanel>
           <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock Text="name" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox x:Name="name" Text="{Binding Path=Name}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBox x:Name="name" Text="{Binding Name, Mode=TwoWay}" TextWrapping="Wrap" Tap="WipeOutTextOnFirstEntry" />
             <TextBlock Text="contact" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox x:Name="contact" Text="{Binding Path=Contact}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBox x:Name="contact" Text="{Binding Contact, Mode=TwoWay}" TextWrapping="Wrap" Tap="WipeOutTextOnFirstEntry" />
             <TextBlock Text="contact method" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox x:Name="contactMethod" Text="{Binding Path=ContactMethod}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
+            <TextBox x:Name="contactMethod" Text="{Binding ContactMethod, Mode=TwoWay}" TextWrapping="Wrap" Tap="WipeOutTextOnFirstEntry" />
             <TextBlock Text="description" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox x:Name="description" Text="{Binding Path=Description}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
-            <toolkit:ListPicker ItemsSource="{Binding Statuses}" SelectedItem="{Binding Status}"/>
+            <TextBox x:Name="description" Text="{Binding Description, Mode=TwoWay}" TextWrapping="Wrap" Tap="WipeOutTextOnFirstEntry" />
+                        <toolkit:ListPicker ItemsSource="{Binding Statuses}" SelectedItem="{Binding Status, Mode=TwoWay}" />
+            <TextBlock Text="size" Style="{StaticResource PhoneTextSmallStyle}" />
+                        <toolkit:ListPicker ItemsSource="{Binding Sizes}" SelectedItem="{Binding Size, Mode=TwoWay}" Margin="10,0,10,10" />
             <TextBlock Text="went missing around" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox x:Name="location" Text="{Binding Path=Location}" TextWrapping="Wrap" Margin="0,-6,12,0" Tap="WipeOutTextOnFirstEntry" />
-            <toolkit:DatePicker x:Name="datePicker" Header="last seen @" Value="{Binding DateTime}" />
+            <TextBox x:Name="location" Text="{Binding Location, Mode=TwoWay}" TextWrapping="Wrap" Tap="WipeOutTextOnFirstEntry" />
+            <toolkit:DatePicker x:Name="datePicker" Header="last seen @" Value="{Binding DateTime, Mode=TwoWay}" />
             <TextBlock Text="breed" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" />
-            <TextBox Text="{Binding Breed}" TextWrapping="Wrap" Tap="BreedTextBoxTouchEvent" />
+            <TextBox Text="{Binding Breed, Mode=TwoWay}" TextWrapping="Wrap" Tap="BreedTextBoxTouchEvent" />
           </StackPanel>
         </Grid>
 

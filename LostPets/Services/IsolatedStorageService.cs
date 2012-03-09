@@ -6,12 +6,10 @@ namespace LostPets.Services {
         public void WriteOutToFile(string fileName, Stream stream) {
             using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication()) {
                 using (var writeStream = new IsolatedStorageFileStream(fileName, FileMode.Create, store)) {
-                    using (Stream fileStream = stream) {
-                        var readBuffer = new byte[4096];
-                        int bytesRead;
-                        while ((bytesRead = fileStream.Read(readBuffer, 0, readBuffer.Length)) > 0) {
-                            writeStream.Write(readBuffer, 0, bytesRead);
-                        }
+                    var readBuffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = stream.Read(readBuffer, 0, readBuffer.Length)) > 0) {
+                        writeStream.Write(readBuffer, 0, bytesRead);
                     }
                 }
             }

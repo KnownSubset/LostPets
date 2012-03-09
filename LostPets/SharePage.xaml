@@ -37,7 +37,8 @@
         <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Share the news to your friends" TextAlignment="Center" Margin="0,15" />
         <StackPanel Grid.Row="2">
 
-          <TextBox Text="{Binding Message}" AcceptsReturn="True" GotFocus="TextBoxGotFocus" LostFocus="TextBoxLostFocus" />
+          <TextBox Text="{Binding Path=Message}" TextWrapping="Wrap" AcceptsReturn="True" GotFocus="TextBoxGotFocus" LostFocus="TextBoxLostFocus" />
+
           <Polygon Margin="0,-37,0,0" Fill="{Binding FillColor}">
             <Polygon.Points>
               <Point X="25" Y="25" />
@@ -45,7 +46,10 @@
               <Point X="25" Y="45" />
             </Polygon.Points>
           </Polygon>
-
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-20,0,0">
+            <TextBlock Text="characters" Style="{StaticResource PhoneTextSmallStyle}" />
+            <TextBlock Text="{Binding Path=Message.Length, Mode=OneWay}" Style="{StaticResource PhoneTextSmallStyle}" />
+          </StackPanel>
         </StackPanel>
         <toolkit:WrapPanel Grid.Row="3" ItemHeight="165" ItemWidth="228">
           <Image Source="Images/twitter_icon.png" Tap="Tweet" Margin="0,5" />

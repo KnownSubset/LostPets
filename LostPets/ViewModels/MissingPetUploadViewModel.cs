@@ -20,10 +20,21 @@ namespace LostPets.ViewModels {
         private string contactMethod;
         private string description;
         private string location;
-        private IEnumerable<Status> statuses = new Collection<Status>{Status.Lost, Status.AtShelter};
         private Uri imageUri = new Uri("Images/pet_thumbnail.jpg", UriKind.Relative);
         public DateTime DateTime { get; set; }
+        public IEnumerable<Status> Statuses
+        {
+            get { return new Collection<Status> { Status.Lost, Status.AtShelter }; }
+        }
 
+        public IEnumerable<Size> Sizes
+        {
+            get { return new Collection<Size> { Size.Small, Size.Medium, Size.Large }; }
+        }
+
+        public Size Size { get; set; }
+        public Status Status { get; set; }
+        
         public string Name {
             get { return name; }
             set {
@@ -80,12 +91,6 @@ namespace LostPets.ViewModels {
             }
         }
 
-        public IEnumerable<Status> Statuses {
-            get { return statuses; }
-            set { statuses = value; }
-        }
-
-        private Status Status { get; set; }
         public DogOrCat IsDogOrCat { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -103,6 +108,7 @@ namespace LostPets.ViewModels {
             pet.FoundAround = location;
             pet.PictureUri = imageUri;
             pet.Status = Status;
+            pet.Size = Size;
             pet.DateWhen = DateTime;
             pet.Description = description;
             pet.Contact = contact;

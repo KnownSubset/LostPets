@@ -16,9 +16,6 @@ namespace LostPets {
         public static readonly string AuthorizeUri = "https://api.twitter.com/oauth/authorize";
         public static readonly string AccessTokenUri = "https://api.twitter.com/oauth/access_token";
 
-        private string _oAuthToken;
-        private string _oAuthTokenSecret;
-
         public OAuthPage() {
             InitializeComponent();
         }

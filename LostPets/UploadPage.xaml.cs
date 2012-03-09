@@ -83,7 +83,8 @@ namespace LostPets {
         private void UploadClick(object sender, EventArgs e) {
             try {
                 Pet pet = uploadViewModel.Pet();
-                isolatedStorageSettings.Remove("pet");
+                if (isolatedStorageSettings.Contains("pet"))
+                    isolatedStorageSettings.Remove("pet");
                 isolatedStorageSettings.Add("pet", pet);
                 isolatedStorageSettings.Save();
                 string petUrl = new PetUploader().Upload(pet);

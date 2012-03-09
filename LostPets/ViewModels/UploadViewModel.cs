@@ -72,6 +72,7 @@ namespace LostPets.ViewModels {
             pet.Status = Status.Stray;
             pet.DateWhen = DateTime;
             pet.Description = description;
+            pet.Size = Size;
             pet.Name = "";
             return pet;
         }
