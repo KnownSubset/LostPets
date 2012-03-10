@@ -8,7 +8,7 @@ namespace LostPets.Services {
     public class PetUploader {
         public string Upload(Pet pet) {
             var restClient = new RestClient {BaseUrl = "http://ec2-107-20-224-204.compute-1.amazonaws.com/node"};
-            byte[] readBuffer = new IsolatedStorageService().ReadImageFromIsolatedStorage("wp7.dat");
+            byte[] readBuffer = new IsolatedStorageService().ReadImageFromIsolatedStorage("myWP7.dat");
             IRestRequest restRequest = new RestRequest(Method.POST)
                 .AddFile("file", readBuffer, pet.PictureUri.LocalPath)
                 .AddParameter("breed", pet.Breed)

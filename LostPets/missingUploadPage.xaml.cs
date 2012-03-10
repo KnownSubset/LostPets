@@ -47,8 +47,6 @@ namespace LostPets {
             //Setting the fileName
             string fileName = "myWP7.dat";
             new IsolatedStorageService().WriteOutToFile(fileName, photoResult.ChosenPhoto);
-            isolatedStorageSettings.Remove("image");
-            isolatedStorageSettings["image"] = photoResult.ChosenPhoto;
             missingPetUploadViewModel.ImageUri = new Uri(photoResult.OriginalFileName);
         }
 

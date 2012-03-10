@@ -57,7 +57,8 @@ namespace LostPets {
             if(!settings.TryGetValue("pet", out pet)) {
                 pet = new Dog();
             }
-            return String.Format("Found {0} Dog {1} @ {2} {3} {4}", pet.Description, pet.FoundAround, pet.DateWhen, pet.Contact, pet.ContactMethod);
+            string buildMessage = String.Format("Found {0} {1} {2} around {3} @ {4:MMM d yy} {5} {6} {7}", pet.Size, pet.Description, pet.DogOrCat, pet.FoundAround, pet.DateWhen, pet.Contact, pet.ContactMethod, settings["petUrl"]);
+            return buildMessage.Replace("  ", " ");
         }
 
         private void PostToWall(object sender, GestureEventArgs gestureEventArgs) {
@@ -65,6 +66,7 @@ namespace LostPets {
             if (settings.Contains("facebookAccessToken")) {
                 var client = new FacebookClient(settings["facebookAccessToken"] as string);
                 var parameters = new Dictionary<string, object>();
+                parameters.Add("message", BuildMessage());
                 parameters.Add("message", BuildMessage());
                 parameters.Add("name", "Missing pet");
                 parameters.Add("privacy", new Dictionary<string, object> {{"value", "ALL_FRIENDS"}});

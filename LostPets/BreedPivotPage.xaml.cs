@@ -16,6 +16,9 @@ namespace LostPets
 {
     public partial class BreedPivotPage : PhoneApplicationPage
     {
+        const string dogOrCatKey = "dogOrCat";
+        private const string breedKey = "breed";
+
         public BreedPivotPage()
         {
             InitializeComponent();
@@ -27,10 +30,12 @@ namespace LostPets
             var addedItem = eventArgs.AddedItems[0] as LongListSelector.LongListSelectorItem;
             var pet = addedItem.Item as Pet;
             var settings = IsolatedStorageSettings.ApplicationSettings;
-            settings.Remove("breed");
-            settings["breed"] = pet.Breed;
-            settings.Remove("dogOrCat");
-            settings["dogOrCat"] = pet.DogOrCat.ToString();
+            if (settings.Contains(breedKey))
+                settings.Remove(breedKey);
+            settings[breedKey] = pet.Breed;
+            if (settings.Contains(dogOrCatKey))
+                settings.Remove(dogOrCatKey);
+            settings[dogOrCatKey] = pet.DogOrCat.ToString();
             settings.Save();
             NavigationService.GoBack();
         }

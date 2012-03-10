@@ -45,10 +45,10 @@ namespace LostPets {
 
         private void ReadMetadataFromImage(object sender, PhotoResult photoResult) {
             //Setting the fileName
+            isolatedStorageSettings.Clear();
+            isolatedStorageSettings.Save();
             string fileName = "myWP7.dat";
             new IsolatedStorageService().WriteOutToFile(fileName, photoResult.ChosenPhoto);
-            isolatedStorageSettings.Remove("image");
-            isolatedStorageSettings["image"] = photoResult.ChosenPhoto;
             uploadViewModel.ImageUri = new Uri(photoResult.OriginalFileName);
         }
 

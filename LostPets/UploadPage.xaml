@@ -52,7 +52,7 @@
             <toolkit:ListPicker ItemsSource="{Binding Sizes}" SelectedItem="{Binding Size, Mode=TwoWay}" Margin="10,0,10,10" />
             <TextBlock Text="found around" Style="{StaticResource PhoneTextSmallStyle}" />
             <TextBox Text="{Binding Location, Mode=TwoWay}" TextWrapping="Wrap" Tap="EnteredLocationTextBox" />
-                        <toolkit:DatePicker x:Name="datePicker" Header="found @" Value="{Binding DateTime, Mode=TwoWay}" />
+            <toolkit:DatePicker x:Name="datePicker" Header="found @" Value="{Binding DateTime, Mode=TwoWay}" />
             <TextBlock Text="breed" Style="{StaticResource PhoneTextSmallStyle}" />
             <TextBox Text="{Binding Breed, Mode=TwoWay}" TextWrapping="Wrap" Tap="BreedTextBoxTouchEvent" />
           </StackPanel>

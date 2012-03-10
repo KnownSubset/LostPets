@@ -37,7 +37,7 @@
         <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Share the news to your friends" TextAlignment="Center" Margin="0,15" />
         <StackPanel Grid.Row="2">
 
-          <TextBox Text="{Binding Path=Message}" TextWrapping="Wrap" AcceptsReturn="True" GotFocus="TextBoxGotFocus" LostFocus="TextBoxLostFocus" />
+          <TextBox Text="{Binding Message, Mode=TwoWay}" TextWrapping="Wrap" AcceptsReturn="True" GotFocus="TextBoxGotFocus" LostFocus="TextBoxLostFocus"  />
 
           <Polygon Margin="0,-37,0,0" Fill="{Binding FillColor}">
             <Polygon.Points>
